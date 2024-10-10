@@ -16,7 +16,7 @@ public class Main {
             System.out.println("2. Add to bouquet");
             System.out.println("3. Remove i-th element from bouquet");
             System.out.println("4. Sort flowers by freshness");
-            System.out.println("5. Run Unit Tests");
+            System.out.println("5. Find flowers by stem length");
             System.out.println("6. Exit");
 
             int choice = scanner.nextInt();
@@ -60,8 +60,11 @@ public class Main {
                     bouquet.sortFreshness();
                     break;
                 case 5:
-                    System.out.println("Running Unit Tests...");
-
+                    System.out.println("Enter minimum stem length:");
+                    int low = scanner.nextInt();
+                    System.out.println("Enter maximum stem length:");
+                    int high = scanner.nextInt();
+                    bouquet.stemLength(low, high);
                     break;
                 case 6:
                     running = false;
