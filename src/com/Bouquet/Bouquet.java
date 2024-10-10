@@ -10,6 +10,7 @@ import com.flowers.*;
 public class Bouquet {
     private ArrayList<Flower> flowers;
     private ArrayList<Accessory> accessories;
+
     public Bouquet(){
         this.flowers = new ArrayList<>();
         this.accessories = new ArrayList<>();
