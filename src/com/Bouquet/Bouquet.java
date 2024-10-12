@@ -3,13 +3,14 @@ package com.Bouquet;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import com.accesories.*;
 import com.flowers.*;
 
 public class Bouquet {
-    private ArrayList<Flower> flowers;
-    private ArrayList<Accessory> accessories;
+    private List<Flower> flowers;
+    private List<Accessory> accessories;
 
     public Bouquet(){
         this.flowers = new ArrayList<>();
@@ -40,11 +41,11 @@ public class Bouquet {
         }
     }
 
-    public ArrayList<Flower> getFlowers() {
+    public List<Flower> getFlowers() {
         return this.flowers;
     }
 
-    public ArrayList<Accessory> getAccessories() {
+    public List<Accessory> getAccessories() {
         return this.accessories;
     }
 
@@ -61,11 +62,29 @@ public class Bouquet {
     }
 
     public void stemLength(int low, int high){
+
+        System.out.println("____Flowers with right length___");
+        flowers.stream().filter(f -> isStemInBounds(low, high, f))
+                .forEach(Flower::print);
+
+        for (Flower f : flowers) {
+
+        }
+
+
         for (int i = 0; i < flowers.size(); i++ ){
-            if (flowers.get(i).getStem() >= low && flowers.get(i).getStem() <= high){
+            if (isStemInBounds(low, high, flowers.get(i))){
+                System.out.println("____Flowers with right length___");
                 flowers.get(i).print();
+
+
             }
         }
+    }
+
+    private boolean isStemInBounds(int low, int high, Flower flower) {
+        int stem = flower.getStem();
+        return stem >= low && stem <= high;
     }
 
     public void sortFreshness() {
@@ -78,14 +97,15 @@ public class Bouquet {
         check();
     }
     public void bouquetPrice(){
-        int price = 0;
+        int flowersPrice = 0;
         for (int i = 0;i < flowers.size(); i++){
-            price += flowers.get(i).getPrice();
+            flowersPrice += flowers.get(i).getPrice();
         }
-        for (int i = 0;i < accessories.size(); i++){
-            price += accessories.get(i).getPrice();
-        }
-        System.out.println("Bouquet price:" + price);
+        int accessoriesPrice = accessories.stream().mapToInt(Accessory::getPrice).sum();
+//        for (int i = 0;i < accessories.size(); i++){
+//            flowersPrice += accessories.get(i).getPrice();
+//        }
+        System.out.println("Bouquet price:" + (flowersPrice + accessoriesPrice));
     }
 }
 

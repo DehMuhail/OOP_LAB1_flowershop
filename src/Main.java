@@ -6,7 +6,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
+        // 1. delete inherited classes or extend them with some really new functionality
+        // 2. use interfaces for variables declarations (List instead of ArrayList)
+        // 3. use streams somewhere
+        // 4. test to test get bouqet priced
         Scanner scanner = new Scanner(System.in);
         Bouquet bouquet = new Bouquet();
         boolean running = true;
