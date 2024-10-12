@@ -14,7 +14,7 @@ public class Accessory {
         this.price = random.nextInt(10);
     }
 
-    public void print(){
+    public  void print(){
         System.out.println(AccesName + "'s price:" + this.price + '\t' + "Color:" + this.color + '\t');
     }
     public int getPrice(){

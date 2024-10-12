@@ -51,13 +51,9 @@ public class Bouquet {
 
     public void check(){
         System.out.println("________Flowers in bouquet________");
-        for (int i = 0; i < flowers.size(); i++){
-            flowers.get(i).print();
-        }
+        flowers.forEach(Flower::print);
         System.out.println("________Accessories in bouquet________");
-        for (int i = 0; i < accessories.size(); i++) {
-            accessories.get(i).print();
-        }
+        accessories.forEach(Accessory::print);
         this.bouquetPrice();
     }
 
@@ -66,20 +62,6 @@ public class Bouquet {
         System.out.println("____Flowers with right length___");
         flowers.stream().filter(f -> isStemInBounds(low, high, f))
                 .forEach(Flower::print);
-
-        for (Flower f : flowers) {
-
-        }
-
-
-        for (int i = 0; i < flowers.size(); i++ ){
-            if (isStemInBounds(low, high, flowers.get(i))){
-                System.out.println("____Flowers with right length___");
-                flowers.get(i).print();
-
-
-            }
-        }
     }
 
     private boolean isStemInBounds(int low, int high, Flower flower) {
@@ -97,16 +79,25 @@ public class Bouquet {
         check();
     }
     public void bouquetPrice(){
-        int flowersPrice = 0;
-        for (int i = 0;i < flowers.size(); i++){
-            flowersPrice += flowers.get(i).getPrice();
-        }
-        int accessoriesPrice = accessories.stream().mapToInt(Accessory::getPrice).sum();
+        int total = flowers.stream().mapToInt(Flower::getPrice).sum() +
+                accessories.stream().mapToInt(Accessory::getPrice).sum();
+        //        int flowersPrice = 0;
+//        for (int i = 0;i < flowers.size(); i++){
+//            flowersPrice += flowers.get(i).getPrice();
+//        }
+//        int accessoriesPrice = accessories.stream().mapToInt(Accessory::getPrice).sum();
 //        for (int i = 0;i < accessories.size(); i++){
 //            flowersPrice += accessories.get(i).getPrice();
 //        }
-        System.out.println("Bouquet price:" + (flowersPrice + accessoriesPrice));
+        System.out.println("Bouquet price:" + total);
     }
+
+    public int getBouquetPrice(){
+        int total = flowers.stream().mapToInt(Flower::getPrice).sum() +
+                accessories.stream().mapToInt(Accessory::getPrice).sum();
+        return total;
+    }
+
 }
 
 

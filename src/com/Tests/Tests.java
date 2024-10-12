@@ -40,4 +40,15 @@ public class Tests {
         bouquet.sortFreshness();
         assertEquals(bouquet.getFlowers().get(0), tulip);
     }
+
+    @Test
+    public void testBouquetPrice() {
+        Bouquet bouquet = new Bouquet();
+        Flower rose = new Rose();
+        Accessory ribbon = new Ribbon();
+        bouquet.addFlower(rose);
+        bouquet.addAccessory(ribbon);
+        int expectedPrice = rose.getPrice() + ribbon.getPrice();
+        assertEquals(expectedPrice, bouquet.getBouquetPrice());
+    }
 }
